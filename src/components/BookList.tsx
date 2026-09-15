@@ -26,7 +26,7 @@ function BookList({ books, setBooks }: BookListProps) {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/books")
+    fetch(`${import.meta.env.VITE_API_URL}/books`)
       .then((response) => response.json())
       .then((data) => {
         setBooks(data);
@@ -34,7 +34,7 @@ function BookList({ books, setBooks }: BookListProps) {
   }, []);
 
   const handleDelete = (id: string) => {
-    fetch(`http://localhost:3000/books/${id}`, {
+  fetch(`${import.meta.env.VITE_API_URL}/books/${id}`, {
       method: "DELETE",
     })
       .then(() => {
@@ -45,7 +45,7 @@ function BookList({ books, setBooks }: BookListProps) {
   };
 
   const handleBorrow = (id: string) => {
-  fetch(`http://localhost:3000/books/${id}/borrow`, {
+  fetch(`${import.meta.env.VITE_API_URL}/books/${id}/borrow`, {
     method: "POST",
   })
     .then((response) => response.json())
@@ -59,7 +59,7 @@ function BookList({ books, setBooks }: BookListProps) {
 };
 
 const handleReturn = (id: string) => {
-  fetch(`http://localhost:3000/books/${id}/return`, {
+  fetch(`${import.meta.env.VITE_API_URL}/books/${id}/return`, {
     method: "POST",
   })
     .then((response) => response.json())
@@ -76,7 +76,7 @@ const handleReturn = (id: string) => {
     if (!editingBook) return;
 
     const response = await fetch(
-      `http://localhost:3000/books/${editingBook._id}`,
+      `${import.meta.env.VITE_API_URL}/books/${editingBook._id}`,
       {
         method: "PUT",
         headers: {
