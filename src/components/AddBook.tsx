@@ -7,6 +7,7 @@ interface Book {
   genre: string;
   publishedYear: number;
   available: boolean;
+   coverUrl: string;
 }
 
 interface AddBookProps {
